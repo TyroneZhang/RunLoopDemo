@@ -25,6 +25,7 @@ RunLoop is an open source that you can download it [here](https://opensource.app
 1. NSDefaultRunLoopMode(KCFRunLoopDefaultMode)
 2. NSEventTrackingRunLoopMode(UITracking)
 3. NSRunLoopCommonModes(KCFRunLoopCommonMode)
+
 其它模式：
 4. NSRunLoopCommonModes
 5. NSModalPanelRunLoopMode
@@ -152,7 +153,7 @@ scheduledTimerWithTimeInterval:invocation:repeats:
 ### 列表中imageView延迟加载图片，提升APP性能；
 ### 线程保活
 
-##RunLoop在系统中的体现
+## RunLoop在系统中的体现
 ### AutoreleasePool
 observer1 ----> Entry ------->do objc_autoreleasePoolPush() 创建自动释放池;
 observer2 -----> BeforeWaiting --------->do  _objc_autoreleasePoolPop() 和 _objc_autoreleasePoolPush() 释放旧的池并创建新池;
@@ -169,8 +170,8 @@ observer2会去遍历所有需要更新UI的事件，并执行。
 ### GCD
 dispatch_async(dispatch_get_main_queue(), block)
 ### 网络请求
-CFSocket
-CFNetwork
-NSURLConnection AFNetworking
-NSURLSession(iOS7 *) AFNetworking2, Alamofire
+1. CFSocket
+2. CFNetwork
+3. NSURLConnection  <- AFNetworking
+4. NSURLSession(iOS7 *) <- AFNetworking2, Alamofire
 

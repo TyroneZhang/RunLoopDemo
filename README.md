@@ -101,7 +101,7 @@ cancelPreviousPerformRequestsWithTarget:selector:object:
 ```
 
 ### Timer Sources
-在cocoa框架中可以直接使用NSTimer的方法
+#### 在cocoa框架中可以直接使用NSTimer的方法
 ```
 scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:
 scheduledTimerWithTimeInterval:invocation:repeats:
@@ -109,6 +109,39 @@ scheduledTimerWithTimeInterval:invocation:repeats:
 1. scheduledTimerWithTimeInterval:方法默认将timer加入到了当前线程的default模式；
 2. 主线程中，滑动textView时，timer停止回调；
 3. 解决2.中问题的方案一是将timer再加入*UITrackingRunLoopMode*，方案二是将timer放入子线程中执行。
+
+#### NSTimer时间可能会出现不准确的问题，导致的原因：
+1. RunLoop 循环时间不确定；
+2. 会收到RunLoop不同模式的影响；
+
+解决方案：
+使用GCD的timer diaptch_timer.
+1. gcd的timer与runloop没有关系，其属于dispatch的source，非runloop的source；
+2. gcd不受模式的影响；
+3. dispatch_timer如果是在主线程，还是会收到runloop的影响，如果是子线程中，就没有这个影响。
+``` Objective-C
+// Note: this is type of dispatch source, not runloop source.
+/*
+All dispatch source:
+DISPATCH_SOURCE_TYPE_DATA_ADD
+DISPATCH_SOURCE_TYPE_DATA_OR
+DISPATCH_SOURCE_TYPE_MACH_RECV
+DISPATCH_SOURCE_TYPE_MACH_SEND
+DISPATCH_SOURCE_TYPE_PROC
+DISPATCH_SOURCE_TYPE_READ
+DISPATCH_SOURCE_TYPE_SIGNAL
+DISPATCH_SOURCE_TYPE_TIMER
+DISPATCH_SOURCE_TYPE_VNODE
+DISPATCH_SOURCE_TYPE_WRITE
+DISPATCH_SOURCE_TYPE_MEMORYPRESSURE
+*/
+dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_main_queue());
+dispatch_source_set_timer(timer, dispatch_time(DISPATCH_TIME_NOW, 0), 1 * NSEC_PER_SEC, 0);
+dispatch_source_set_event_handler(timer, ^{
+NSLog(@"timer callback.");
+});
+dispatch_resume(timer);
+```
 
 ## RunLoop Observers
 1. Observer可以接收到runloop的执行事件的通知，如：

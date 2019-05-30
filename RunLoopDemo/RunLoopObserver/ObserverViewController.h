@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ObserverViewController.h
 //  RunLoopDemo
 //
 //  Created by Demon_Yao on 2019/5/28.
@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+NS_ASSUME_NONNULL_BEGIN
 
+@interface ObserverViewController : UIViewController
 
 @end
 
+NS_ASSUME_NONNULL_END

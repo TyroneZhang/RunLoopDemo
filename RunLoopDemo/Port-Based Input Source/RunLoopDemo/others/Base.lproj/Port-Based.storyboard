@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="o39-1O-jnS">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Port Inout Source View Controller-->
+        <scene sceneID="bGC-MO-kgH">
+            <objects>
+                <viewController id="o39-1O-jnS" customClass="PortInoutSourceViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="10k-g5-hqU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ymG-Nk-ULV">
+                                <rect key="frame" x="83" y="116" width="248" height="30"/>
+                                <state key="normal" title="Main thread send msg to sub thread"/>
+                                <connections>
+                                    <action selector="mainToSub:" destination="o39-1O-jnS" eventType="touchUpInside" id="V52-w5-Nr9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cpg-sb-wx7">
+                                <rect key="frame" x="82" y="187" width="250" height="30"/>
+                                <state key="normal" title="Sub thread send msg to main thread"/>
+                                <connections>
+                                    <action selector="subToMain:" destination="o39-1O-jnS" eventType="touchUpInside" id="BnR-OT-0We"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SUN-Ro-Obu">
+                                <rect key="frame" x="152" y="257" width="110" height="30"/>
+                                <state key="normal" title="Stop sub thread"/>
+                                <connections>
+                                    <action selector="stopSub:" destination="o39-1O-jnS" eventType="touchUpInside" id="LvL-pN-ltK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ymG-Nk-ULV" firstAttribute="centerX" secondItem="10k-g5-hqU" secondAttribute="centerX" id="0to-zb-hmk"/>
+                            <constraint firstItem="cpg-sb-wx7" firstAttribute="top" secondItem="ymG-Nk-ULV" secondAttribute="bottom" constant="41" id="9oI-Pw-DiF"/>
+                            <constraint firstItem="SUN-Ro-Obu" firstAttribute="centerX" secondItem="10k-g5-hqU" secondAttribute="centerX" id="OAY-8b-Wae"/>
+                            <constraint firstItem="cpg-sb-wx7" firstAttribute="centerX" secondItem="10k-g5-hqU" secondAttribute="centerX" id="ZWh-u2-GyK"/>
+                            <constraint firstItem="ymG-Nk-ULV" firstAttribute="top" secondItem="Tu9-ip-cYY" secondAttribute="top" constant="72" id="aDr-VQ-6uI"/>
+                            <constraint firstItem="SUN-Ro-Obu" firstAttribute="top" secondItem="cpg-sb-wx7" secondAttribute="bottom" constant="40" id="uIX-XZ-8wg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Tu9-ip-cYY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mJx-wg-KVk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1296" y="-350"/>
+        </scene>
+    </scenes>
+</document>
